@@ -1,0 +1,5 @@
+/home/luis/Documentos/projects/code1/build/CMakeFiles/sdl2_demo.dir
+/home/luis/Documentos/projects/code1/build/CMakeFiles/package.dir
+/home/luis/Documentos/projects/code1/build/CMakeFiles/package_source.dir
+/home/luis/Documentos/projects/code1/build/CMakeFiles/edit_cache.dir
+/home/luis/Documentos/projects/code1/build/CMakeFiles/rebuild_cache.dir
