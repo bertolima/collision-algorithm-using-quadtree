@@ -26,5 +26,7 @@ class Screen{
         int x = 0;
         Uint64 NOW = SDL_GetPerformanceCounter();
         Uint64 LAST = 0;
-        double deltaTime = 0;
+        double delta = 0;
+        int a = SDL_GetTicks();
+        int b = SDL_GetTicks();
 };

@@ -46,20 +46,25 @@ void Screen::pollEvents(){
 void Screen::update()
 {
     this->pollEvents();
+    
 
 }
 
 void Screen::render()
 {
-    this->LAST = this->NOW;
-    this->NOW = SDL_GetPerformanceCounter();
-    this->deltaTime = (double)((NOW - LAST)*1000 / (double)SDL_GetPerformanceFrequency() );
-    SDL_SetRenderDrawColor(this->renderer,0,0,0,255);
-    SDL_RenderClear(this->renderer);
-    SDL_SetRenderDrawColor(this->renderer, 255,255,255,255);
-    SDL_RenderDrawLine(this->renderer,this->x,this->x, this->x+100, this->x+100);
-    this->x++;
-    SDL_RenderPresent(this->renderer);
-    SDL_Delay(10);
 
-}
+    this->a = SDL_GetTicks();
+    this->delta =  this->a -  this->b;
+    if (this->delta > 1000/60.0)
+    {
+        SDL_SetRenderDrawColor(this->renderer,0,0,0,255);
+        SDL_RenderClear(this->renderer);
+        SDL_SetRenderDrawColor(this->renderer, 255,255,255,255);
+        SDL_RenderDrawLine(this->renderer,0,30, this->x, 30);
+        SDL_RenderPresent(this->renderer);
+        this->b = this->a;
+        this->x = this->x + (80 * this->delta/1000);
+    
+    }
+} 
+
