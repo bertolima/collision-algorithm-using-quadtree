@@ -11,4 +11,4 @@ add_executable(sdl2_demo ${SOURCES})
 #set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
 #include(CPack)
 
-target_link_libraries(sdl2_demo SDL2main SDL2)
+target_link_libraries(sdl2_demo SDL2main SDL2 GL)

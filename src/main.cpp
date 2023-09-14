@@ -4,7 +4,12 @@
 
 
 
-int main(int argc, char** argv)
+int main()
 {
-    run();
+    Screen screen("Teste", 800, 800);
+    while(!screen.isClosed()){
+        screen.update();
+        screen.render();
+    }
+    return 0;
 }

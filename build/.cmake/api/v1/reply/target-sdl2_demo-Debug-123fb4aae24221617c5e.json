@@ -89,6 +89,11 @@
 				"backtrace" : 2,
 				"fragment" : "-lSDL2",
 				"role" : "libraries"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "-lGL",
+				"role" : "libraries"
 			}
 		],
 		"language" : "CXX"
