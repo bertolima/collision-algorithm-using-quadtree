@@ -1,6 +1,8 @@
 #include "../include/Screen.h"
 #include "Screen.h"
 
+
+
 Screen::Screen(const std::string &title, int width, int height){
     this->width = width;
     this->height = height;
@@ -31,7 +33,8 @@ bool Screen::init(){
     return true;
 }
 
-void Screen::pollEvents(){
+void Screen::pollEvents()
+{
     if(SDL_PollEvent(&this->event)){
         switch (event.type){
             case SDL_QUIT:
@@ -43,28 +46,20 @@ void Screen::pollEvents(){
     }
 }
 
-void Screen::update()
+void Screen::update(float dt)
 {
-    this->pollEvents();
-    
+    this->x = this->x + (80*dt);
 
 }
 
 void Screen::render()
 {
 
-    this->a = SDL_GetTicks();
-    this->delta =  this->a -  this->b;
-    if (this->delta > 1000/60.0)
-    {
-        SDL_SetRenderDrawColor(this->renderer,0,0,0,255);
-        SDL_RenderClear(this->renderer);
-        SDL_SetRenderDrawColor(this->renderer, 255,255,255,255);
-        SDL_RenderDrawLine(this->renderer,0,30, this->x, 30);
-        SDL_RenderPresent(this->renderer);
-        this->b = this->a;
-        this->x = this->x + (80 * this->delta/1000);
+    SDL_SetRenderDrawColor(this->renderer,0,0,0,255);
+    SDL_RenderClear(this->renderer);
+    SDL_SetRenderDrawColor(this->renderer, 255,255,255,255);
+    SDL_RenderDrawLine(this->renderer,0,30, this->x, 30);
+    SDL_RenderPresent(this->renderer);
     
-    }
 } 
 

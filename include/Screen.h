@@ -10,9 +10,8 @@ class Screen{
         void pollEvents();
         inline bool isClosed() const {return closed;}
 
-        void update();
+        void update(float dt);
         void render();
-
     private:
         bool init();
         std::string title;
@@ -29,4 +28,5 @@ class Screen{
         double delta = 0;
         int a = SDL_GetTicks();
         int b = SDL_GetTicks();
+        
 };
