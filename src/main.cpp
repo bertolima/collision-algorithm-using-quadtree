@@ -1,48 +1,24 @@
 #include <iostream>
 #include <stdio.h>
+#include <ctime>
 #include "../include/Screen.h"
 
-struct Timer
+
+int main(int argc, char** argv)
 {
-    Uint64 previous_ticks{};
-    float elapsed_seconds{};
+    srand(static_cast<unsigned>(time(NULL)));
+    Screen screen("Teste");
 
-    void tick()
-    {
-        const Uint64 current_ticks{ SDL_GetPerformanceCounter() };
-        const Uint64 delta{ current_ticks - previous_ticks };
-        previous_ticks = current_ticks;
-        static const Uint64 TICKS_PER_SECOND{ SDL_GetPerformanceFrequency() };
-        elapsed_seconds = delta / static_cast<float>(TICKS_PER_SECOND);
-        if(elapsed_seconds > 0.5) elapsed_seconds = 0.5f;
-    }
-};
-
-int main()
-{
-
-    
-    const int UPDATE_FREQUENCY{ 60 };
-    const float CYCLE_TIME{ 1.0f / UPDATE_FREQUENCY };
-    static Timer system_timer;
-    float accumulated_seconds{ 0.0f };
-    Screen screen("Teste", 800, 800);
-
+    Uint32 lastUpdate = SDL_GetPerformanceCounter();
     while(!screen.isClosed()){
-        system_timer.tick();
-        accumulated_seconds += system_timer.elapsed_seconds;
+        
         screen.pollEvents();
-        while (std::isgreater(accumulated_seconds, CYCLE_TIME))
-        {
-            accumulated_seconds = -CYCLE_TIME;
-            static Timer physics_timer;
-            physics_timer.tick();
-            std::cout << physics_timer.elapsed_seconds << "\n";
-            screen.update(physics_timer.elapsed_seconds);
-            screen.render();
+        Uint32 current = SDL_GetPerformanceCounter();
+        float dt = (current - lastUpdate) / (float)SDL_GetPerformanceFrequency();
+        lastUpdate = current;
+        screen.update(dt);
         
-        }
-        
-    }
+        screen.render();
+	}
     return 0;
 }
